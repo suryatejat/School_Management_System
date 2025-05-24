@@ -10,4 +10,18 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    public Student addStudent(Student student){
+        return studentRepository.save(student);
+    }
+
+    public Student getByStudentId(Long id){
+        return studentRepository.getReferenceById(id);
+    }
+    public Student UpdateByStudentId(Student student){
+        Student existingStudent = getByStudentId(student.getId());
+        existingStudent.setEmail(student.getEmail());
+        return existingStudent;
+    }
+
+
 }
