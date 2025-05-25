@@ -1,6 +1,7 @@
 package com.SMS.Project1.Services;
 
 import com.SMS.Project1.Model.Courses;
+import com.SMS.Project1.Model.Student;
 import com.SMS.Project1.Repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,8 @@ import java.util.Optional;
 public class CourseService {
     @Autowired
     private CourseRepository  repository;
+    @Autowired
+    private StudentService studentService;
 
     public Courses save(Courses course) {
         return repository.save(course);
@@ -36,4 +39,8 @@ public class CourseService {
         return existingCourse;
     }
 
+    public List<Courses> findByStudentId(String email){
+        Student student = studentService.findByEmail(email);
+        return repository.findByStudentId(student.getId());
+    }
 }

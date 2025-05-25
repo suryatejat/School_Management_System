@@ -33,4 +33,7 @@ public class StudentService {
         return studentRepository.findById(id).get().getCourseList();
     }
 
+    public Student findByEmail(String email){
+        return studentRepository.findByEmail(email).orElseThrow(null);
+    }
 }
