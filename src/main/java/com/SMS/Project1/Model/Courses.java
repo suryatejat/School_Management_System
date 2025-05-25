@@ -35,4 +35,8 @@ public class Courses {
     @ManyToOne
     @JoinColumn(name = "teacher_id", nullable = false)
     private Teacher teacher;
+
+    public Long getId() {
+        return this.id;
+    }
 }
