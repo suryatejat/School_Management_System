@@ -1,20 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Signup Page </title>
+    <title>Signup</title>
 </head>
 <body>
+<h2>Signup</h2>
 <form th:action="@{/signup}" method="post">
-    <div><label> Email : <input type="email" name="email"/> </label></div>
-    <div><label> Name : <input type="text" name="name"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <br>
-    <div>
-        <input type="submit" value="Register"/>
-        <span>or</span>
-        <a href="/login">Have an Account!</a>
-    </div>
-
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Register</button>
 </form>
+<p>Have an account? <a href="/login">Login</a></p>
 </body>
 </html>
