@@ -20,19 +20,17 @@ public class CourseController {
     }
 
     @PutMapping("/update")
-    private Optional<Courses> UpdateDescription(@RequestBody Courses course) {
+    private Courses UpdateDescription(@RequestBody Courses course) {
         return courseService.Updatedesc(course);
     }
 
     @GetMapping("/{id}")
-    private Optional<Courses> FindCourse(@PathVariable Long id){
+    private Courses FindCourse(@PathVariable Long id){
         return courseService.findById(id);
     }
     @DeleteMapping("/{id}")
-    private Optional<Courses> DeleteCourse(@PathVariable Long id){
+    private Courses DeleteCourse(@PathVariable Long id){
         return courseService.deleteCourses(id);
     }
-
-
 
 }
