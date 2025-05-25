@@ -1,5 +1,6 @@
 package com.SMS.Project1.Services;
 
+import com.SMS.Project1.Model.Courses;
 import com.SMS.Project1.Model.Teacher;
 import com.SMS.Project1.Repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,9 @@ public class TeacherService {
     public Teacher update(Teacher teacher) {
         return repository.save(teacher);
     }
+
+    public List<Courses> teachingCourses(Long id){
+        return repository.findById(id).get().getCoursesList();
+    }
+
 }
