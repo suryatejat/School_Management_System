@@ -1,12 +1,15 @@
 package com.SMS.Project1.Controller;
 
+import com.SMS.Project1.Model.Courses;
 import com.SMS.Project1.Model.Student;
+import com.SMS.Project1.Services.CourseService;
 import com.SMS.Project1.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +20,9 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private CourseService courseService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -48,8 +54,10 @@ public class StudentController {
     }
 
     @GetMapping("/dashboard")
-    public String getDashboard(){
-        studentService.getAllStudents();
+    private String viewAllCourses(Model model) {
+        List<Courses> courses = courseService.getAllCourses();
+        model.addAttribute("allCourses", courses);
         return "dashboard";
     }
+
 }

@@ -24,7 +24,7 @@ public class AuthConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/login", "/signup").permitAll()
+                        .requestMatchers("/login", "/signup", "/teacher").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
