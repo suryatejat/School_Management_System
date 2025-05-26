@@ -60,6 +60,7 @@ public class StudentController {
         studentService.getAllStudents();
         return "dashboard";
     }
+    //Get the student details from email
     @GetMapping("/registered")
     private String registeredCourses(Model model, Principal principal){
         List<Courses> courses = courseService.findByStudentId(principal.getName());
