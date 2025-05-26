@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -58,6 +59,13 @@ public class StudentController {
         List<Courses> courses = courseService.getAllCourses();
         model.addAttribute("allCourses", courses);
         return "dashboard";
+    }
+
+    @GetMapping("/registered")
+    private String registeredCourses(Model model, Principal principal){
+        List<Courses> courses = courseService.findByStudentId(principal.getName());
+        model.addAttribute("courses", courses);
+        return "registeredCourses";
     }
 
 }
