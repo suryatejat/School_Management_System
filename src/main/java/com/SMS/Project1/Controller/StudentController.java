@@ -1,14 +1,19 @@
 package com.SMS.Project1.Controller;
 
+import com.SMS.Project1.Model.Courses;
 import com.SMS.Project1.Model.Student;
+import com.SMS.Project1.Repository.CourseRepository;
+import com.SMS.Project1.Services.CourseService;
 import com.SMS.Project1.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -17,6 +22,9 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private CourseService courseService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -52,4 +60,12 @@ public class StudentController {
         studentService.getAllStudents();
         return "dashboard";
     }
+    //Get the student details from email
+    @GetMapping("/registered")
+    private String registeredCourses(Model model, Principal principal){
+        List<Courses> courses = courseService.findByStudentId(principal.getName());
+        model.addAttribute("courses", courses);
+        return "registeredCourses";
+    }
+
 }

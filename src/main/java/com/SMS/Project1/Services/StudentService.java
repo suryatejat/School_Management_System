@@ -38,6 +38,10 @@ public class StudentService implements UserDetailsService {
         return studentRepository.findById(id).get().getCourseList();
     }
 
+
+    public Student findByEmail(String email){
+        return studentRepository.findByEmail(email).orElseThrow(null);
+}
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Student student = studentRepository.findStudentByEmail(email)
