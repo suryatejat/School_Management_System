@@ -20,22 +20,22 @@ public class CourseService {
         return repository.save(course);
     }
 
-    public Optional<Courses> findById(Long id){
-        return repository.findById(id);
-
+    public Courses findById(Long id){
+        return repository.findById(id).get();
     }
 
     public List<Courses> getAllCourses() {
         return repository.findAll();
     }
-    public Optional<Courses> deleteCourses(long id ){
+
+    public Courses deleteCourses(long id ){
         repository.deleteById(id);
         return null;
     }
 
-    public Optional<Courses> Updatedesc(Courses course) {
-        Optional<Courses> existingCourse = repository.findById(course.getId());
-        System.out.println(existingCourse);
+    public Courses Updatedesc(Courses course) {
+        Courses existingCourse = repository.findById(course.getId()).get();
+        existingCourse.setDescription(course.getDescription());
         return existingCourse;
     }
 
