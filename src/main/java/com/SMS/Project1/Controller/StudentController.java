@@ -2,7 +2,6 @@ package com.SMS.Project1.Controller;
 
 import com.SMS.Project1.Model.Courses;
 import com.SMS.Project1.Model.Student;
-import com.SMS.Project1.Repository.CourseRepository;
 import com.SMS.Project1.Services.CourseService;
 import com.SMS.Project1.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,11 +55,12 @@ public class StudentController {
     }
 
     @GetMapping("/dashboard")
-    public String getDashboard(){
-        studentService.getAllStudents();
+    private String viewAllCourses(Model model) {
+        List<Courses> courses = courseService.getAllCourses();
+        model.addAttribute("allCourses", courses);
         return "dashboard";
     }
-    //Get the student details from email
+
     @GetMapping("/registered")
     private String registeredCourses(Model model, Principal principal){
         List<Courses> courses = courseService.findByStudentId(principal.getName());
